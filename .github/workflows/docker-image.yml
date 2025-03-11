@@ -3,7 +3,8 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main # ou qualquer branch que você preferir
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
