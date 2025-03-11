@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     curl wget \
     && rm -rf /var/lib/apt/lists/*
 
-COPY . /telegram-bot-api
+RUN git clone https://github.com/welitonma/tdlib.git /telegram-bot-api
 
 WORKDIR /telegram-bot-api/build
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. .. 
