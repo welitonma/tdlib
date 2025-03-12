@@ -11,8 +11,12 @@ RUN apt-get update && apt-get install -y \
 RUN git clone https://github.com/tdlib/telegram-bot-api.git /telegram-bot-api
 
 WORKDIR /telegram-bot-api/build
-RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. .. 
+RUN cmake -DCMAKE_BUILD_TYPE=Release ..
 RUN cmake --build . --target install
+
+RUN mkdir -p /telegram-bot-api/bin
+
+RUN cp /telegram-bot-api/build/telegram-bot-api /telegram-bot-api/bin/
 
 WORKDIR /var/lib/telegram-bot-api
 
