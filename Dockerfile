@@ -8,10 +8,11 @@ RUN apt-get update && apt-get install -y \
     curl wget \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/tdlib/telegram-bot-api.git /telegram-bot-api
+RUN rm -rf /telegram-bot-api
+RUN git clone --recursive https://github.com/tdlib/telegram-bot-api.git /telegram-bot-api
 
 WORKDIR /telegram-bot-api/build
-RUN cmake -DCMAKE_BUILD_TYPE=Release ..
+RUN cmake -DCMAKE_BUILD_TYPE=Release /telegram-bot-api
 RUN cmake --build . --target install
 
 RUN mkdir -p /telegram-bot-api/bin
